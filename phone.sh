@@ -15,15 +15,19 @@ LOCALCACHE=/tmp/mpeuserdb.txt
 [ $# -eq 0 ] && { echo " This scripts provides office phone number for MPE employees"; echo " Usage: $0 name/string"; exit 1; }  
 
 # check for links text browser availability 
+echo "Checking for required software ..."
+echo
 command -v links &> /dev/null
 [ $? -gt 0  ] && { printf "Command links not found, please install with:\n 'sudo apt-get install links' (for Debian/Ubuntu)\n 'sudo yum install links' (for Fedora/RHEL)\n 'brew install wget' (for OSX, using http://brew.sh/)\n"; exit 1; }
+# check for curl availability 
+command -v curl &> /dev/null
+[ $? -gt 0  ] && { printf "Command curl not found, please install with:\n 'sudo apt-get install curl' (for Debian/Ubuntu)\n 'sudo yum install curl' (for Fedora/RHEL)\n 'brew install curl' (for OSX, using http://brew.sh/)\n"; exit 1; }
 
 # check for user DB online availability, else use local cache, else fail and exit.
 HTTP_RETURN=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' $USERURL)
 
 if (( $HTTP_RETURN == 200 )); then
 	# dump the user data, write out new cache file and return match ...
-	echo
 	echo "Using online user DB"
 	echo 
 	echo "             name           |  phone           |  email               |  office       "
@@ -34,7 +38,6 @@ if (( $HTTP_RETURN == 200 )); then
 
 else
 	if [[ -f $LOCALCACHE ]] ; then
-		echo
 		echo "Online user DB unavailable, using local cache user DB."
 		echo 
 		echo "             name           |  phone           |  email               |  office       "

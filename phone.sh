@@ -18,7 +18,7 @@ LOCALCACHE=/tmp/mpeuserdb.txt
 echo "Checking for required software ..."
 echo
 command -v links &> /dev/null
-[ $? -gt 0  ] && { printf "Command links not found, please install with:\n 'sudo apt-get install links' (for Debian/Ubuntu)\n 'sudo yum install links' (for Fedora/RHEL)\n 'brew install wget' (for OSX, using http://brew.sh/)\n"; exit 1; }
+[ $? -gt 0  ] && { printf "Command links not found, please install with:\n 'sudo apt-get install links' (for Debian/Ubuntu)\n 'sudo yum install links' (for Fedora/RHEL)\n 'brew install links' (for OSX, using http://brew.sh/)\n"; exit 1; }
 # check for curl availability 
 command -v curl &> /dev/null
 [ $? -gt 0  ] && { printf "Command curl not found, please install with:\n 'sudo apt-get install curl' (for Debian/Ubuntu)\n 'sudo yum install curl' (for Fedora/RHEL)\n 'brew install curl' (for OSX, using http://brew.sh/)\n"; exit 1; }

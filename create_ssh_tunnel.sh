@@ -4,7 +4,7 @@
 ## variables to update ##
 #########################
 
-REMOTE_HOST=ex-sol.mpe.mpg.de
+REMOTE_HOST=supporthost.example.com
 REVERSE_PORT=3310
 
 #############################################
